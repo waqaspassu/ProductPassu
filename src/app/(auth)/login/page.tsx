@@ -1,8 +1,12 @@
+// "use client"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
-const Login = () => {
+export default function Login() {
+
+
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full sm:w-96">
@@ -37,4 +41,3 @@ const Login = () => {
   );
 };
 
-export default Login;

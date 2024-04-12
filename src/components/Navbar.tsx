@@ -1,8 +1,12 @@
+"use client"
 import Link from "next/link";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import { trpc } from "@/trpc/client";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter()
   return (
     <nav className="bg-white border border-b-gray-200">
       <div className="max-w-screen-xl flex flex-wrap justify-between items-center mx-auto">
@@ -13,17 +17,27 @@ const Navbar = () => {
         {/* Desktop Version */}
         <div className=" hidden w-full md:block md:w-auto items-center justify-center">
           <ul className="flex items-center justify-center">
-            <li >
-              <Link className="block py-2 px-3  text-gray-900  rounded md:hover:text-blue-700" href="/">Home</Link>
+            <li>
+              <Link
+                className="block py-2 px-3  text-gray-900  rounded md:hover:text-blue-700"
+                href="/"
+              >
+                Home
+              </Link>
             </li>
-            <li >
-              <Link className="block py-2 px-3  text-gray-900  rounded md:hover:text-blue-700" href="/products">Products</Link>
+            <li>
+              <Link
+                className="block py-2 px-3  text-gray-900  rounded md:hover:text-blue-700"
+                href="/products"
+              >
+                Products
+              </Link>
             </li>
-            <li  className="py-2 px-3">
-              <Button >Logout</Button>
+            <li className="py-2 px-3">
+              <Button onClick={()=> router.push('/signup')}>Create Account</Button>
             </li>
-            <li  className="py-2 px-3">
-              <Button>Login</Button>
+            <li className="py-2 px-3">
+              <Button onClick={()=> router.push('/login')}>Login</Button>
             </li>
           </ul>
         </div>
