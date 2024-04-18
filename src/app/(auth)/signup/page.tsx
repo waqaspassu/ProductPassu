@@ -7,14 +7,9 @@ import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 
-type SignUpInputs = {
-  email: string;
-  userName: string;
-  password: string;
-  confirmPassword: string;
-};
+
 const Signup = () => {
-  const { handleSubmit, register } = useForm<SignUpInputs>();
+  const { handleSubmit, register } = useForm<TAuthCredentialsValidator>();
   const {mutate} = trpc.signUp.useMutation({
     onSuccess: (data) => {
       console.log("hello",data)

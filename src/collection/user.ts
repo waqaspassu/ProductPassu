@@ -10,10 +10,20 @@ export const User: Access = ({ req: { user } }) => {
 };
 export const Users: CollectionConfig = {
   slug: "users",
-  auth: true,
+  auth: {
+    verify:{
+      generateEmailHTML:({req,token,user})=>{
+        return(
+          `<h1>Hello thanks for signing up from email ${user.email}. Click here to verify your email ${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}  </h1>`
+        )
+      }
+    }
+  },
+  
   access: {
     create: () => true,
     read: () => true,
+    
   },
   fields: [
     {
