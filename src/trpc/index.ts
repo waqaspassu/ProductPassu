@@ -1,6 +1,6 @@
 
 import { publicProcedure, router } from "./trpc";
-import { signUpProcedure, signUpSchema } from "./procedures/signup";
+import { signUpProcedure } from "./procedures/signup";
 import { verifyEmailProcedure } from "./procedures/verifyEmail";
 
 export const appRouter = router({

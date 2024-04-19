@@ -1,31 +1,37 @@
-import { buildConfig } from 'payload/config'
-import { webpackBundler } from '@payloadcms/bundler-webpack'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { slateEditor } from '@payloadcms/richtext-slate'
-import path from 'path'
-import dotenv from 'dotenv'
-import { Users } from './collection/user'
+import { buildConfig } from "payload/config";
 
+import { webpackBundler } from "@payloadcms/bundler-webpack";
+import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { slateEditor } from "@payloadcms/richtext-slate";
+import path from "path";
+import dotenv from "dotenv";
+import { Users } from "./collection/user";
 
 
 dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
-})
+  path: path.resolve(__dirname, "../.env"),
+});
 
 export default buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-  collections: [Users], 
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
+  collections: [Users],
 
   routes: {
-    admin: '/sell',
+    admin: "/sell",
   },
   admin: {
-    user:"users",
+    user: "users",
     bundler: webpackBundler(),
+    webpack: (config) => {
+      
+      return config
+
+      
+    },
     meta: {
-      titleSuffix: '- DigitalHippo',
-      favicon: '/favicon.ico',
-      ogImage: '/thumbnail.jpg',
+      titleSuffix: "- DigitalHippo",
+      favicon: "/favicon.ico",
+      ogImage: "/thumbnail.jpg",
     },
   },
   rateLimit: {
@@ -36,6 +42,6 @@ export default buildConfig({
     url: process.env.MONGODB_URL!,
   }),
   typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+    outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
-})
+});

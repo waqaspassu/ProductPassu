@@ -1,24 +1,16 @@
+'use client';
+
 import { z } from "zod";
+
 import { trpc } from "../client";
 import { publicProcedure } from "../trpc";
 import { getPayloadClient } from "./../../get-payload";
 import { TRPCError } from "@trpc/server";
 import { TRPCClientError } from "@trpc/client";
-
-const UserRole = z.enum(["admin", "user"]);
-
-export const signUpSchema = z.object({
-  email: z.string(),
-  password: z.string(),
-  confirmPassword: z.string(),
-  userName: z.string(),
-  // role: UserRole
-});
-
-export type TAuthCredentialsValidator = z.infer<typeof signUpSchema>;
+import { SignUpSchema } from "./../../validators/signUp/auth";
 
 export const signUpProcedure = publicProcedure
-  .input(signUpSchema)
+  .input(SignUpSchema)
   .mutation(async ({ input }) => {
     console.log("hello in the success page is", input);
     const { email, password, userName } = input;
@@ -35,7 +27,7 @@ export const signUpProcedure = publicProcedure
     });
 
     if (user.length > 0) {
-      throw new TRPCError({ code: "CONFLICT" });
+      throw new TRPCError({ code: "CONFLICT", message:"User with this email already exists" });
     }
 
     await payload.create({

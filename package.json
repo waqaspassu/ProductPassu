@@ -2,6 +2,11 @@
   "name": "productpassu",
   "version": "0.1.0",
   "private": true,
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "scripts": {
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
@@ -32,11 +37,12 @@
     "payload": "^2.12.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.51.2",
+    "react-hook-form": "^7.49.3",
     "resend": "^3.2.0",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "yup": "^1.4.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
