@@ -22,3 +22,12 @@ export const SignUpSchema = z
   });
 
 export type TSignUpSchema = z.infer<typeof SignUpSchema>;
+
+
+
+export const LoginSchema = z.object({
+    email:z.string(),
+    password: z.string()
+})
+
+export type TLoginSchema = z.infer<typeof LoginSchema>
